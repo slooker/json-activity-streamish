@@ -18,28 +18,32 @@ const activityExample = {
     "href": "http://www.wiredrive.com/someAsset/id",
     "mediaType": "mime/jpeg",
     "name": "JPG.jpg"
-  }
+  },
+  "content": "This is my content"
 };
 
 describe('Run all tests', () => {
   describe('Create object', () => {
-    it(' should have empty fields when none are supplied', (done) => {
+    it('should have empty fields when none are supplied', (done) => {
       let activity = new Activity();
       Object.keys(activity.actor()).length.should.equal(0);
       Object.keys(activity.target()).length.should.equal(0);
-      Object.keys(activity.type()).length.should.equal(0);
+      activity.type().length.should.equal(0);
+      should.not.exist(activity.content());
       done();
     });
 
-    it(' should have populated fields if they are supplied', (done) => {
+    it('should have populated fields if they are supplied', (done) => {
       let activity = new Activity(activityExample);
+      console.log(activity);
       activity.actor().id.should.equal(activityExample.actor.id);
       activity.target().id.should.equal(activityExample.target.id);
       activity.type().should.equal(activityExample.type);
+      activity.content().should.equal(activityExample.content);
       done();
     });
 
-    it(' should allow actor to be set manually', (done) => {
+    it('should allow actor to be set manually', (done) => {
       let activity = new Activity();
       Object.keys(activity.actor()).length.should.equal(0);
 
@@ -48,7 +52,7 @@ describe('Run all tests', () => {
       done();
     });
 
-    it(' should allow target to be set manually', (done) => {
+    it('should allow target to be set manually', (done) => {
       let activity = new Activity();
       Object.keys(activity.target()).length.should.equal(0);
 
@@ -57,20 +61,30 @@ describe('Run all tests', () => {
       done();
     });
 
-    it(' should allow type to be set manually', (done) => {
+    it('should allow type to be set manually', (done) => {
       let activity = new Activity();
       activity.type().length.should.equal(0);
 
       activity.type(activityExample.type);
-      activity.type().should.equal('Accept');
+      activity.type().should.equal(activityExample.type);
       done();
     });
 
-    it(' should output correctly', (done) => {
+    it('should allow content to be set manually', (done) => {
+      let activity = new Activity();
+      should.not.exist(activity.content());
+
+      activity.content(activityExample.content);
+      activity.content().should.equal(activityExample.content);
+      done();
+    });
+
+    it('should output correctly', (done) => {
       let activity = new Activity();
       activity.target(activityExample.target);
       activity.type(activityExample.type);
       activity.actor(activityExample.actor);
+      activity.content(activityExample.content);
 
       let activityJSONString = activity.toJSON();
       let json = JSON.parse(activityJSONString);
