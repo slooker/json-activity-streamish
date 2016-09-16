@@ -6,18 +6,19 @@ const Activity = require('../index');
 const activityExample = {
   "@context": "http://www.w3.org/ns/activitystreams#",
   "id": "44da8f78-29ba-9a04-44c4-be3451a3b716",
+  "name": "John Smith has accepted JPG.jpg",
   "type": "Accept",
   "actor": {
     "id": "98765",
     "type": "Person",
-    "attributedTo": "skushch@intersog.com",
-    "name": "I don't know his name"
+    "attributedTo": "jsmith@fakedomain.com",
+    "name": "John Smith"
   },
   "published": "2016-09-15T21:06:47Z",
   "target": {
     "id": "123456",
     "type": "Link",
-    "href": "http://www.wiredrive.com/someAsset/id",
+    "href": "http://www.fakedomain.com/image/id",
     "mediaType": "mime/jpeg",
     "name": "JPG.jpg"
   },
@@ -44,12 +45,57 @@ describe('Run all tests', () => {
       done();
     });
 
+    it('should allow name to be set manually', (done) => {
+      let activity = new Activity();
+      activity.name().length.should.equal(0);
+
+      activity.name(activityExample.name);
+      activity.name().should.equal(activityExample.name);
+      done();
+    });
+
+    it ("should generate name if we don\'t set it manually", (done) => {
+      let activity = new Activity();
+      activity.name().length.should.equal(0);
+      activity.actor(activityExample.actor);
+      activity.target(activityExample.target);
+      activity.type(activityExample.type);
+
+      activity.actor().id.should.equal(activityExample.actor.id);
+      activity.target().id.should.equal(activityExample.target.id);
+      activity.type().should.equal(activityExample.type);
+
+      activity.toJSON().name.should.equal(activityExample.name);
+      done();
+
+    });
+
+    it('should not override a manual name with a generated name', () => {
+      let activity = new Activity();
+      activity.name().length.should.equal(0);
+      activity.actor(activityExample.actor);
+      activity.target(activityExample.target);
+      activity.type(activityExample.type);
+
+      activity.actor().id.should.equal(activityExample.actor.id);
+      activity.target().id.should.equal(activityExample.target.id);
+      activity.type().should.equal(activityExample.type);
+
+      activity.toJSON().name.should.equal(activityExample.name);
+
+      let fakeName = "Toto, I've a feeling we're not in Kansas anymore.";
+      activity.name(fakeName);
+      activity.name().should.equal(fakeName);
+      activity.toJSON().name.should.equal(fakeName);
+    });
+
+
     it('should allow actor to be set manually', (done) => {
       let activity = new Activity();
       Object.keys(activity.actor()).length.should.equal(0);
 
       activity.actor(activityExample.actor);
-      activity.actor().id.should.equal('98765');
+      activity.actor().id.should.equal(activityExample.actor.id);
       done();
     });
 
@@ -58,7 +104,7 @@ describe('Run all tests', () => {
       Object.keys(activity.target()).length.should.equal(0);
 
       activity.target(activityExample.target);
-      activity.target().id.should.equal('123456');
+      activity.target().id.should.equal(activityExample.target.id);
       done();
     });
 

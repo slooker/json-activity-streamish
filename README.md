@@ -24,57 +24,17 @@ We started writing an activity user stream that used [JSON Activity Stream](http
    console.log(activity.toString());
 ```
 
-## Example Usage ##
+### Notes ###
+You can pass in all data when you create the activity like so:
 
 ```
-const Activity = require('json-activity-streamish');
-// Create a new activity and manually set fields
-let activity = new Activity();
-activity.type('Accept')
-  .actor({
-    "id": "98765",
-    "type": "Person",
-    "attributedTo": "john.smith@myfakedomain.com",
-    "name": "I don't know his name"
-  })
-  .target({
-    "id": "123456",
-    "type": "Link",
-    "href": "http://www.fakedomain.com/image/123456",
-    "mediaType": "mime/jpeg",
-    "name": "JPG.jpg"
-  });
-console.log(activity.toJSON());
-
-/* Output:
-{
-	"@context": "http://www.w3.org/ns/activitystreams#",
-	"id": "4cfba82c-7af1-1b61-f686-c3be9aefea2e",
-	"actor": {
-		"id": "98765",
-		"type": "Person",
-		"attributedTo": "john.smith@myfakedomain.com",
-		"name": "I don't know his name"
-	},
-	"target": {
-		"id": "123456",
-		"type": "Link",
-		"href": "http://www.fakedomain.com/image/123456",
-		"mediaType": "mime/jpeg",
-		"name": "JPG.jpg"
-	},
-	"type": "Accept",
-	"published": "2016-09-16T13:19:22.224Z"
-}
-*/
-
-// Populate all data on creation
-let secondActivity = new Activity({
+let activity = new Activity({
+  "name": "John Smith has accepted JPG.jpg",
   "actor": {
 		"id": "98765",
 		"type": "Person",
 		"attributedTo": "john.smith@myfakedomain.com",
-		"name": "I don't know his name"
+		"name": "John Smith"
 	},
 	"target": {
 		"id": "123456",
@@ -85,7 +45,36 @@ let secondActivity = new Activity({
 	},
 	"type": "Accept",  
 });
-// Produces the same output as up above
-console.log(secondActivity.toJSON());
+```
 
+You can also set fields manually:
+
+```
+let activity = new Activity();
+activity.type('Accept')
+  .actor({
+    "id": "98765",
+    "type": "Person",
+    "attributedTo": "john.smith@myfakedomain.com",
+    "name": "John Smith"
+  })
+  .target({
+    "id": "123456",
+    "type": "Link",
+    "href": "http://www.fakedomain.com/image/123456",
+    "mediaType": "mime/jpeg",
+    "name": "JPG.jpg"
+  });
+```
+
+Note that `name` will be generated for you from your `type`, `actor` and `target` if you don't set it explicitly.
+
+You can output to a json object or to a json representation of a string.
+
+```
+// Output to a JSON object
+activity.toJSON();
+
+// Out put to a JSON string repesentation
+activity.toString();
 ```

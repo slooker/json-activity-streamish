@@ -1,6 +1,6 @@
 {
   "name": "json-activity-streamish",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "JSON Activity Streamish ... simple with added verbs",
   "main": "index.js",
   "repository": {
@@ -17,6 +17,7 @@
     "should": "^11.1.0"
   },
   "dependencies": {
-    "guid": "0.0.12"
+    "guid": "0.0.12",
+    "tensify": "0.0.2"
   }
 }
