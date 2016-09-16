@@ -2,11 +2,3 @@ language: node_js
 node_js:
 - '6'
 - '4'
-deploy:
-  provider: npm
-  email: shawn.looker@gmail.com
-  api_key:
-    secure: JvVoAINsTEPtZin1gVCwUL4tDDmuqfbYshUf5w81VzPfX3nJ5KrDaD43p+/yDE+NZyr/N2XS2lxvZUlovBocqbXxiDxfwX1OWXBo7KDXF5LG0haGtl5HBYHM78/EPBCNzOw1OfEzUfJitjUbUu4UgQ0IvpQ6vW1GA/qTOIJ7Fe6TxrPoAUYggugOD5WZB+B1nwyd9VnakY/ywyqdi/HV3eLkX7wEzUShgY2eJua0cp5ksrI8DUxtg+ExW56z6V3DxUgAou+97JorIpJ4K+ZxOi5fBfiQwxugAsHLRvkF4LkB11BZ8QmkV2UXTfW+oR/nGyU+S+wGr6FMyVGCVcQGcqsUWxHbAN51rEweZA90LMXnzJjwJT2gJsr+b2N9UOqUAZNm1DrXAS49Ubdf+Giaoe5C2J0VSJaY+NNssuD+f86IqcTsuPlFb/J7E4mU50jAiGoHIZ3P+EkusKMFxr+DJ73T7LsNwXeBk1BmsC8HvqnmIivXiTwc6KLZyAxGkSBMmHUlWpGRK+g52YJuBDPnB+/mjFyjC13b9Ay75YGZmhe/JRAYrMHVy1Fam1ewXNc8V3g3bR1xTJkm7pGcBrSvhN7XdDXGBLXLc2nYNrjyeVzSxqOv2w1Wwa1KXDWesqpSUL4Jew7BQyw/TiKsq4jOF9Yhk++nFiELg58AHD8drdw=
-  on:
-    tags: true
-    repo: slooker/json-activity-streamish

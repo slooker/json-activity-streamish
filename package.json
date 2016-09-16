@@ -1,10 +1,11 @@
 {
   "name": "json-activity-streamish",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "JSON Activity Streamish ... simple with added verbs",
   "main": "index.js",
-    "repository": { "type" : "git",
-    "url" : "https://github.com/slooker/json-activity-streamish"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/slooker/json-activity-streamish"
   },
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha --timeout 15000 test/*.test.js"

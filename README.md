@@ -1,3 +1,5 @@
+![Build Passing Image](https://travis-ci.org/slooker/json-activity-streamish.svg?branch=master)
+
 # JSON Activity Stream-ish
 
 ## History ##

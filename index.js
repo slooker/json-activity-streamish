@@ -1,3 +1,5 @@
+'use strict';
+
 const guid = require('guid');
 
 let activityClass = class JSONActivityStreamish {
