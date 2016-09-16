@@ -39,7 +39,7 @@ activity.type('Accept')
     "href": "http://www.fakedomain.com/image/123456",
     "mediaType": "mime/jpeg",
     "name": "JPG.jpg"
-  })
+  });
 console.log(activity.toJSON());
 
 /* Output:
