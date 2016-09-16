@@ -16,28 +16,32 @@ let activityClass = class JSONActivityStreamish {
   // getter and setter in one.  Kind of ugly though.
   actor(newActor) {
     if (newActor) {
-      return this._actor = newActor;
+      this._actor = newActor;
+      return this;
     }
     return this._actor;
   }
 
   target(newTarget) {
     if (newTarget) {
-      return this._target = newTarget;
+      this._target = newTarget;
+      return this;
     }
     return this._target;
   }
 
   type(newType) {
     if (newType) {
-      return this._type = newType;
+      this._type = newType;
+      return this;
     }
     return this._type;
   }
 
   content(newContent) {
     if (newContent) {
-      return this._content = newContent;
+      this._content = newContent;
+      return this;
     }
     return this._content;
   }

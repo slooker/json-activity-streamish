@@ -26,20 +26,20 @@ We started writing an activity user stream that used [JSON Activity Stream](http
 const Activity = require('json-activity-streamish');
 // Create a new activity and manually set fields
 let activity = new Activity();
-activity.type('Accept');
-activity.actor({
-  "id": "98765",
-  "type": "Person",
-  "attributedTo": "john.smith@myfakedomain.com",
-  "name": "I don't know his name"
-});
-activity.target({
-  "id": "123456",
-  "type": "Link",
-  "href": "http://www.fakedomain.com/image/123456",
-  "mediaType": "mime/jpeg",
-  "name": "JPG.jpg"
-})
+activity.type('Accept')
+  .actor({
+    "id": "98765",
+    "type": "Person",
+    "attributedTo": "john.smith@myfakedomain.com",
+    "name": "I don't know his name"
+  })
+  .target({
+    "id": "123456",
+    "type": "Link",
+    "href": "http://www.fakedomain.com/image/123456",
+    "mediaType": "mime/jpeg",
+    "name": "JPG.jpg"
+  })
 console.log(activity.toJSON());
 
 /* Output:

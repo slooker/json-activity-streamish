@@ -83,10 +83,10 @@ describe('Run all tests', () => {
 
     it('- toString() should output correctly', (done) => {
       let activity = new Activity();
-      activity.target(activityExample.target);
-      activity.type(activityExample.type);
-      activity.actor(activityExample.actor);
-      activity.content(activityExample.content);
+      activity.target(activityExample.target)
+        .type(activityExample.type)
+        .actor(activityExample.actor)
+        .content(activityExample.content);
 
       let activityJSONString = activity.toString();
       let json = JSON.parse(activityJSONString);
