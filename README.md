@@ -14,8 +14,10 @@ We started writing an activity user stream that used [JSON Activity Stream](http
   const Activity = require('json-activity-streamish')
    let activity = new Activity();
    // <Set the actor, target and type fields as below>
-   // Render JSON string
+   // Get JSON object
    console.log(activity.toJSON());
+   // Get string representation of JSON object
+   console.log(activity.toString());
 ```
 
 ## Example Usage ##

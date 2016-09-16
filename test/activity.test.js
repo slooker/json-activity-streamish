@@ -35,7 +35,6 @@ describe('Run all tests', () => {
 
     it('should have populated fields if they are supplied', (done) => {
       let activity = new Activity(activityExample);
-      console.log(activity);
       activity.actor().id.should.equal(activityExample.actor.id);
       activity.target().id.should.equal(activityExample.target.id);
       activity.type().should.equal(activityExample.type);
@@ -79,14 +78,17 @@ describe('Run all tests', () => {
       done();
     });
 
-    it('should output correctly', (done) => {
+  });
+  describe('Output functions', () => {
+
+    it('- toString() should output correctly', (done) => {
       let activity = new Activity();
       activity.target(activityExample.target);
       activity.type(activityExample.type);
       activity.actor(activityExample.actor);
       activity.content(activityExample.content);
 
-      let activityJSONString = activity.toJSON();
+      let activityJSONString = activity.toString();
       let json = JSON.parse(activityJSONString);
 
       json.actor.id.should.equal(activityExample.actor.id);
@@ -97,6 +99,27 @@ describe('Run all tests', () => {
       Object.keys(json).length.should.equal(Object.keys(activityExample).length);
       Object.keys(json.actor).length.should.equal(Object.keys(activityExample.actor).length);
       Object.keys(json.target).length.should.equal(Object.keys(activityExample.target).length);
+
+      done();
+
+    });
+    it('- toJson() should output correctly', (done) => {
+      let activity = new Activity();
+      activity.target(activityExample.target);
+      activity.type(activityExample.type);
+      activity.actor(activityExample.actor);
+      activity.content(activityExample.content);
+
+      let activityJSON = activity.toJSON();
+
+      activityJSON.actor.id.should.equal(activityExample.actor.id);
+      activityJSON.target.id.should.equal(activityExample.target.id);
+      activityJSON.type.should.equal(activityExample.type);
+      should.exist(activityJSON.published);
+      should.exist(activityJSON['@context']);
+      Object.keys(activityJSON).length.should.equal(Object.keys(activityExample).length);
+      Object.keys(activityJSON.actor).length.should.equal(Object.keys(activityExample.actor).length);
+      Object.keys(activityJSON.target).length.should.equal(Object.keys(activityExample.target).length);
 
       done();
 
