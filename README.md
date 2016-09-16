@@ -7,7 +7,9 @@ We started writing an activity user stream that used [JSON Activity Stream](http
 ## To Begin ##
 
 1.  Install it:
-  `npm install json-activity-streamish --save`
+```
+  npm install json-activity-streamish --save
+```
 
 2.  Require it and use:
 ```
