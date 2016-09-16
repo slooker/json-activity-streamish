@@ -78,6 +78,23 @@ describe('Run all tests', () => {
       done();
     });
 
+    it('should allow content to be an object or a string', (done) => {
+      let activity = new Activity();
+      should.not.exist(activity.content());
+
+      activity.content(activityExample.content);
+      activity.content().should.equal(activityExample.content);
+
+      let content = {
+        type: "Note",
+        name: "This is my content"
+      };
+
+      activity.content(content);
+      activity.content().should.equal(content);
+      done();
+    })
+
   });
   describe('Output functions', () => {
 
