@@ -10,13 +10,14 @@ We started writing an activity user stream that used [JSON Activity Stream](http
   `npm install json-activity-streamish --save`
 
 2.  Require it and use:
-  ```const Activity = require('json-activity-streamish')
-     let activity = new Activity();
-     // <Set the actor, target and type fields as below>
-     // Render JSON string
-     console.log(activity.toJSON());
-  ```
-  
+```
+  const Activity = require('json-activity-streamish')
+   let activity = new Activity();
+   // <Set the actor, target and type fields as below>
+   // Render JSON string
+   console.log(activity.toJSON());
+```
+
 ## Example Usage ##
 
 ```
