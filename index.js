@@ -50,6 +50,13 @@ let activityClass = class JSONActivityStreamish {
     return this._content;
   }
 
+  meta(newMeta) {
+    if (newMeta) {
+      this._meta = newMeta;
+      return this;
+    }
+    return this._meta;
+  }
 
   name(newName) {
     if (newName) {
@@ -72,9 +79,12 @@ let activityClass = class JSONActivityStreamish {
       this._name = `${this._actor.name} has ${tensify(this._type.toLowerCase()).past} ${this._target.name}`;
     }
     object.name = this._name;
-    
+
     if (this._content) {
       object.content = this._content;
+    }
+    if (this._meta) {
+      object.meta = this._meta;
     }
     return object;
   }

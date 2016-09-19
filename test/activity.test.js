@@ -126,6 +126,18 @@ describe('Run all tests', () => {
       done();
     });
 
+    it('should allow meta to be set as an object or a string', (done) => {
+      let activity = new Activity(activityExample);
+      should.not.exist(activity.meta());
+
+      let metadata = { recipients: ["email1@email.com", "email2@email.com"], clientId: "clientId" };
+
+      activity.meta(metadata);
+      activity.toJSON().meta.recipients.should.equal(metadata.recipients);
+      activity.toJSON().meta.clientId.should.equal(metadata.clientId);
+      done();
+    });
+
     it('should allow content to be an object or a string', (done) => {
       let activity = new Activity();
       should.not.exist(activity.content());
