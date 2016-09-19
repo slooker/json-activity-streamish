@@ -1,6 +1,6 @@
 {
   "name": "json-activity-streamish",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "JSON Activity Streamish ... simple with added verbs",
   "main": "index.js",
   "repository": {

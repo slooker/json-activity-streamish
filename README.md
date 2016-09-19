@@ -69,6 +69,17 @@ activity.type('Accept')
 
 Note that `name` will be generated for you from your `type`, `actor` and `target` if you don't set it explicitly.
 
+
+We've added a `meta` field so that you can add any extraneous data that doesn't fit into JSON Activity Stream spec as well.  It works the same way as all of the other fields you can set.  
+
+```
+let activity = new Activity();
+activity.meta({
+  recipients: ["john.smith@myfakedomain.com", "jane.smith@myfakedomain.com"],
+  someOtherField: "someOtherData"
+});
+```
+
 You can output to a json object or to a json representation of a string.
 
 ```
