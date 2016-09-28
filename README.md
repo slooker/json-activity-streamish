@@ -58,7 +58,7 @@ activity.type('Accept')
     "attributedTo": "john.smith@myfakedomain.com",
     "name": "John Smith"
   })
-  .target({
+  .object({
     "id": "123456",
     "type": "Link",
     "href": "http://www.fakedomain.com/image/123456",
@@ -80,12 +80,37 @@ activity.meta({
 });
 ```
 
-You can output to a json object or to a json representation of a string.
+You can return a json object or a json representation of a string.
 
 ```
-// Output to a JSON object
+// Get a JSON object
 activity.toJSON();
 
-// Out put to a JSON string repesentation
+// Output to a JSON string representation
 activity.toString();
 ```
+
+## Supported Functions ##
+
+### Getters and Setters ###
+
+All getters and setters can be called with an argument to set the argument, or without to get the property.
+
+Here's a list of getters and setters:
+
+* `* activity.actor()`
+* `* activity.object()`
+* `activity.target()`
+* `* activity.type()`
+* `activity.content()`
+* `activity.meta()`
+* `activity.name()`
+
+* is a required field.
+
+`.name()` will be auto generated for you if you do not supply it.
+
+### Output ###
+
+`toJSON()` will return a JSON object
+`toString()` will return a string representation of the JSON object
