@@ -89,7 +89,7 @@ let activityClass = class JSONActivityStreamish {
     }
     object.name = this._name;
 
-    if (this._target) {
+    if (Object.keys(this._target).length) {
       object.target = this._target;
     }
 
