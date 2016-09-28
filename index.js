@@ -12,6 +12,7 @@ let activityClass = class JSONActivityStreamish {
     this._actor = args && 'actor' in args ? args.actor : {};
     this._target = args && 'target' in args ? args.target : {};
     this._type = args && 'type' in args ? args.type : '';
+    this._object = args && 'object' in args ? args.object: {};
     if (args && args.content) {
       this._content = args.content;
     }
@@ -24,6 +25,14 @@ let activityClass = class JSONActivityStreamish {
       return this;
     }
     return this._actor;
+  }
+
+  object(newObject) {
+    if (newObject) {
+      this._object = newObject;
+      return this;
+    }
+    return this._object;
   }
 
   target(newTarget) {
@@ -71,7 +80,7 @@ let activityClass = class JSONActivityStreamish {
       '@context': this._context,
       id: this._id,
       actor: this._actor,
-      target: this._target,
+      object: this._object,
       type: this._type,
       published: this._published
     };
@@ -80,9 +89,14 @@ let activityClass = class JSONActivityStreamish {
     }
     object.name = this._name;
 
+    if (this._target) {
+      object.target = this._target;
+    }
+
     if (this._content) {
       object.content = this._content;
     }
+
     if (this._meta) {
       object.meta = this._meta;
     }

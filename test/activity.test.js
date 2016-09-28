@@ -15,6 +15,14 @@ const activityExample = {
     "name": "John Smith"
   },
   "published": "2016-09-15T21:06:47Z",
+  "object": {
+    "id": "123456",
+    "type": "Presentation",
+    "href": "http://www.fakedomain.com/presentation/id",
+    "mediaType": "mime/jpeg",
+    "name": "JPG.jpg"
+
+  },
   "target": {
     "id": "123456",
     "type": "Link",
@@ -26,7 +34,7 @@ const activityExample = {
 };
 
 describe('Run all tests', () => {
-  describe('Create object', () => {
+  describe('Create activity', () => {
     it('should have empty fields when none are supplied', (done) => {
       let activity = new Activity();
       Object.keys(activity.actor()).length.should.equal(0);
@@ -42,6 +50,7 @@ describe('Run all tests', () => {
       activity.target().id.should.equal(activityExample.target.id);
       activity.type().should.equal(activityExample.type);
       activity.content().should.equal(activityExample.content);
+      activity.object().should.equal(activityExample.object);
       done();
     });
 
@@ -54,7 +63,7 @@ describe('Run all tests', () => {
       done();
     });
 
-    it ("should generate name if we don\'t set it manually", (done) => {
+    it ("should generate name if we don't set it manually", (done) => {
       let activity = new Activity();
       activity.name().length.should.equal(0);
       activity.actor(activityExample.actor);
@@ -89,6 +98,14 @@ describe('Run all tests', () => {
       activity.toJSON().name.should.equal(fakeName);
     });
 
+    it('should allow object to be set manually', (done) => {
+      let activity = new Activity();
+      Object.keys(activity.object()).length.should.equal(0);
+
+      activity.object(activityExample.object);
+      activity.object().id.should.equal(activityExample.object.id);
+      done();
+    });
 
     it('should allow actor to be set manually', (done) => {
       let activity = new Activity();
