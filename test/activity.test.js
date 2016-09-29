@@ -2,11 +2,12 @@
 
 const should = require('should');
 const Activity = require('../index');
+const tensify = require('tensify');
 
 const activityExample = {
   "@context": "http://www.w3.org/ns/activitystreams#",
   "id": "44da8f78-29ba-9a04-44c4-be3451a3b716",
-  "name": "John Smith has accepted JPG.jpg",
+  "name": "John Smith has commented on Presentation 98765421",
   "type": "Accept",
   "actor": {
     "id": "98765",
@@ -17,21 +18,19 @@ const activityExample = {
   "published": "2016-09-15T21:06:47Z",
   "object": {
     "id": "123456",
-    "type": "Presentation",
-    "href": "http://www.fakedomain.com/presentation/id",
-    "mediaType": "mime/jpeg",
-    "name": "JPG.jpg"
-
+    "type": "Comment",
+    "name": "I love memes! They're the best form of humor."
   },
   "target": {
-    "id": "123456",
-    "type": "Link",
+    "id": "98765421",
+    "type": "Presentation",
     "href": "http://www.fakedomain.com/image/id",
     "mediaType": "mime/jpeg",
     "name": "JPG.jpg"
   },
   "content": "This is my content"
 };
+const noTargetName = `${activityExample.actor.name} has ${tensify(activityExample.type.toLowerCase()).past} ${activityExample.object.name}`;
 
 describe('Run all tests', () => {
   describe('Create activity', () => {
@@ -63,11 +62,27 @@ describe('Run all tests', () => {
       done();
     });
 
-    it ("should generate name if we don't set it manually", (done) => {
+    it ("should generate name for object without target if we don't set it manually", (done) => {
       let activity = new Activity();
       activity.name().length.should.equal(0);
       activity.actor(activityExample.actor);
       activity.object(activityExample.object);
+      activity.type(activityExample.type);
+
+      activity.actor().id.should.equal(activityExample.actor.id);
+      activity.object().id.should.equal(activityExample.object.id);
+      activity.type().should.equal(activityExample.type);
+
+      activity.toJSON().name.should.equal(noTargetName);
+      done();
+
+    });
+    it ("should generate name for object/target if we don't set it manually", (done) => {
+      let activity = new Activity();
+      activity.name().length.should.equal(0);
+      activity.actor(activityExample.actor);
+      activity.object(activityExample.object);
+      activity.target(activityExample.target);
       activity.type(activityExample.type);
 
       activity.actor().id.should.equal(activityExample.actor.id);
@@ -90,7 +105,7 @@ describe('Run all tests', () => {
       activity.object().id.should.equal(activityExample.object.id);
       activity.type().should.equal(activityExample.type);
 
-      activity.toJSON().name.should.equal(activityExample.name);
+      activity.toJSON().name.should.equal(noTargetName);
 
       let fakeName = "Toto, I've a feeling we're not in Kansas anymore.";
       activity.name(fakeName);

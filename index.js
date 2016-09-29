@@ -13,10 +13,9 @@ let activityClass = class JSONActivityStreamish {
     this._target = args && 'target' in args ? args.target : {};
     this._type = args && 'type' in args ? args.type : '';
     this._object = args && 'object' in args ? args.object: {};
-    if (args && args.content) {
-      this._content = args.content;
-    }
-  }
+    this._meta = args && 'meta' in args ? args.meta: undefined;
+    this._content = args && 'content' in args ? args.content: undefined;
+  };
 
   // getter and setter in one.  Kind of ugly though.
   actor(newActor) {
@@ -84,14 +83,19 @@ let activityClass = class JSONActivityStreamish {
       type: this._type,
       published: this._published
     };
-    if (!this._name) {
-      this._name = `${this._actor.name} has ${tensify(this._type.toLowerCase()).past} ${this._object.name}`;
-    }
-    object.name = this._name;
 
     if (Object.keys(this._target).length) {
       object.target = this._target;
     }
+
+    if (!this._name) {
+      if (Object.keys(this._target).length) {
+        this._name = `${this._actor.name} has ${tensify(this._object.type.toLowerCase()).past} on ${this._target.type} ${this._target.id}`
+      } else {
+        this._name = `${this._actor.name} has ${tensify(this._type.toLowerCase()).past} ${this._object.name}`;
+      }
+    }
+    object.name = this._name;
 
     if (this._content) {
       object.content = this._content;
