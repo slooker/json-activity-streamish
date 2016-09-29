@@ -85,7 +85,7 @@ let activityClass = class JSONActivityStreamish {
       published: this._published
     };
     if (!this._name) {
-      this._name = `${this._actor.name} has ${tensify(this._type.toLowerCase()).past} ${this._target.name}`;
+      this._name = `${this._actor.name} has ${tensify(this._type.toLowerCase()).past} ${this._object.name}`;
     }
     object.name = this._name;
 

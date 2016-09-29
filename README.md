@@ -17,7 +17,7 @@ We started writing an activity user stream that used [JSON Activity Stream](http
 ```
   const Activity = require('json-activity-streamish')
    let activity = new Activity();
-   // <Set the actor, target and type fields as below>
+   // <Set the actor, object and type fields as below>
    // Get JSON object
    console.log(activity.toJSON());
    // Get string representation of JSON object
@@ -36,7 +36,7 @@ let activity = new Activity({
 		"attributedTo": "john.smith@myfakedomain.com",
 		"name": "John Smith"
 	},
-	"target": {
+	"object": {
 		"id": "123456",
 		"type": "Link",
 		"href": "http://www.fakedomain.com/image/123456",
@@ -67,7 +67,7 @@ activity.type('Accept')
   });
 ```
 
-Note that `name` will be generated for you from your `type`, `actor` and `target` if you don't set it explicitly.  `id` will also be auto-populated using the [guid](https://www.npmjs.com/package/guid) module
+Note that `name` will be generated for you from your `type`, `actor` and `object` if you don't set it explicitly.  `id` will also be auto-populated using the [guid](https://www.npmjs.com/package/guid) module
 
 
 We've added a `meta` field so that you can add any extraneous data that doesn't fit into JSON Activity Stream spec as well.  It works the same way as all of the other fields you can set.  

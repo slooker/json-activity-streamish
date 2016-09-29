@@ -67,11 +67,11 @@ describe('Run all tests', () => {
       let activity = new Activity();
       activity.name().length.should.equal(0);
       activity.actor(activityExample.actor);
-      activity.target(activityExample.target);
+      activity.object(activityExample.object);
       activity.type(activityExample.type);
 
       activity.actor().id.should.equal(activityExample.actor.id);
-      activity.target().id.should.equal(activityExample.target.id);
+      activity.object().id.should.equal(activityExample.object.id);
       activity.type().should.equal(activityExample.type);
 
       activity.toJSON().name.should.equal(activityExample.name);
@@ -83,11 +83,11 @@ describe('Run all tests', () => {
       let activity = new Activity();
       activity.name().length.should.equal(0);
       activity.actor(activityExample.actor);
-      activity.target(activityExample.target);
+      activity.object(activityExample.object);
       activity.type(activityExample.type);
 
       activity.actor().id.should.equal(activityExample.actor.id);
-      activity.target().id.should.equal(activityExample.target.id);
+      activity.object().id.should.equal(activityExample.object.id);
       activity.type().should.equal(activityExample.type);
 
       activity.toJSON().name.should.equal(activityExample.name);
