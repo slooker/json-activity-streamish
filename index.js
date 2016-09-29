@@ -13,6 +13,9 @@ let activityClass = class JSONActivityStreamish {
     this._target = args && 'target' in args ? args.target : {};
     this._type = args && 'type' in args ? args.type : '';
     this._object = args && 'object' in args ? args.object: {};
+    if (args && args.meta) {
+      this._meta = args.meta;
+    }
     if (args && args.content) {
       this._content = args.content;
     }
