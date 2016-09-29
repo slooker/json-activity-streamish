@@ -104,7 +104,7 @@ let activityClass = class JSONActivityStreamish {
   }
 
   toString() {
-    return JSON.stringify(this.toJSON());
+    return JSON.stringify(this.toJSON(), null, 2);
   }
 }
 
