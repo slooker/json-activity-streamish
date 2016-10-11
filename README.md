@@ -67,7 +67,7 @@ activity.type('Accept')
   });
 ```
 
-Note that `name` will be generated for you from your `type`, `actor` and `object` if you don't set it explicitly.  `id` will also be auto-populated using the [guid](https://www.npmjs.com/package/guid) module
+Note that `name` will be generated for you from your `type`, `actor` and `object` if you don't set it explicitly.  `id` will also be auto-populated using the [node-uuid](https://www.npmjs.com/package/node-uuid) module
 
 
 We've added a `meta` field so that you can add any extraneous data that doesn't fit into JSON Activity Stream spec as well.  It works the same way as all of the other fields you can set.  
