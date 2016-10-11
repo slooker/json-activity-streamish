@@ -1,11 +1,11 @@
 'use strict';
 
-const guid = require('guid');
+const uuid = require('node-uuid');
 const tensify = require('tensify');
 
 let activityClass = class JSONActivityStreamish {
   constructor(args) {
-    this._id = guid.raw();
+    this._id = uuid.v1();
     this._name = args && args.name ? args.name : '';
     this._context = 'http://www.w3.org/ns/activitystreams#';
     this._published = new Date().toISOString();
